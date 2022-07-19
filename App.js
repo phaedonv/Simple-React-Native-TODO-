@@ -18,6 +18,8 @@ export default function App() {
 
   const completeTask = (index) => {
     let itemsCopy = [...taskItems];
+    itemsCopy.splice(index, 1);
+    setTaskItems(itemsCopy);
   }
   
   return (
@@ -32,7 +34,11 @@ export default function App() {
 
           {
             taskItems.map((item, index) => {
-              return <Task key={index} text={item} />
+              return (
+                <TouchableOpacity key={index} onPress={() => completeTask()}>
+                  <Task text={item} />
+                </TouchableOpacity>
+              )
             })
           }
           
