@@ -25,26 +25,36 @@ export default function App() {
   return (
     <View style={styles.container}>
       
-      {/* Today's Tasks */}
-      <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}>Today's Tasks</Text>
+      {/* Added this scroll view to enable scrolling when list gets longer than the page */}
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1
+        }}
+        keyboardShouldPersistTaps='handled'
+      >
+      
+        {/* Today's Tasks */}
+        <View style={styles.tasksWrapper}>
+          <Text style={styles.sectionTitle}>Today's Tasks</Text>
 
-        <View style={styles.items}>
-          {/* tasks here will be */}
+          <View style={styles.items}>
+            {/* tasks here will be */}
 
-          {
-            taskItems.map((item, index) => {
-              return (
-                <TouchableOpacity key={index} onPress={() => completeTask(index)}>
-                  <Task text={item} />
-                </TouchableOpacity>
-              )
-            })
-          }
-          
+            {
+              taskItems.map((item, index) => {
+                return (
+                  <TouchableOpacity key={index} onPress={() => completeTask(index)}>
+                    <Task text={item} />
+                  </TouchableOpacity>
+                )
+              })
+            }
+            
+          </View>
+
         </View>
 
-      </View>
+      </ScrollView>
 
       {/* Write a Task */}
       {/* Uses a keyboard avoiding view which ensures the keyboard does not cover the items on screen */}
